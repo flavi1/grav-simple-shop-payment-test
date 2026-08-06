@@ -1,0 +1,25 @@
+# user/plugins/simple-shop-payment-test/blueprints.yaml
+name: Simple Shop Payment Test
+version: 1.0.0
+description: Module complémentaire de test pour simuler les transactions de paiement sur Simple Shop.
+icon: credit-card
+author:
+  name: Votre Nom
+homepage: https://votre-site.com
+keywords: grav, plugin, shop, payment, test
+bugs: https://votre-site.com
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: Statut du module
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
