@@ -40,8 +40,10 @@ class SimpleShopPaymentTestPlugin extends Plugin
         // 1. Récupération d'une copie locale du tableau des passerelles
         $gateways = $event['gateways'] ?? [];
  
-        // 2. Ajout de la passerelle de test
-        $testGateway = new PaymentGatewayTest();
+        // 2. Ajout de la passerelle de test (tunnel d'achat ET documents si simple-shop les gère : même identifiant)
+        $testGateway = interface_exists(\Grav\Plugin\SimpleShop\Gateways\DocumentPaymentGatewayInterface::class)
+            ? new \Grav\Plugin\SimpleShopPaymentTest\Gateways\DocumentGatewayTest()
+            : new PaymentGatewayTest();
         $gateways[$testGateway->getId()] = $testGateway;
 
         // 3. Réinjection du tableau modifié dans l'événement
